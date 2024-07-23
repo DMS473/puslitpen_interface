@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,157 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Global Styles */
+body {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #2e7d32;
+}
+
+a:hover {
+  color: #336799;
+}
+
+/* Header Styles */
+header {
+  background-color: #336799;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+header nav ul li {
+  margin: 0;
+}
+
+header nav ul li a {
+  color: white;
+  font-weight: bold;
+}
+
+header nav ul li a:hover {
+  color: #cddc39;
+}
+
+/* Main Styles */
+main {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+/* Form Styles */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+form input,
+form select,
+form button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  background-color: #336799;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #2e7d32;
+}
+
+/* List Styles */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+ul li:last-child {
+  border-bottom: none;
+}
+
+/* Button Styles */
+.button {
+  background-color: #336799;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+}
+
+.button:hover {
+  background-color: #2e7d32;
+}
+
+/* Card Styles */
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Typography */
+h1 {
+  color: #336799;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
+
+p {
+  margin-bottom: 10px;
 }

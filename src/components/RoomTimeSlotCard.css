@@ -1,0 +1,19 @@
+.room-time-slot-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 10px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .room-time-slot-card h2 {
+    color: #1b5e20;
+  }
+  
+  .room-time-slot-card p {
+    color: #555;
+  }
+  
