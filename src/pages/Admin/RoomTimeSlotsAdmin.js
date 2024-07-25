@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getRoomTimeSlots, addRoomTimeSlot } from '../../services/api';
+import { getRoomTimeSlotsAll, addRoomTimeSlot } from '../../services/api';
 import AddRoomTimeslotModal from '../../components/Admin/AddRoomTimeSlotModal';
 import { formatDate } from '../../utils/formatDate';
 
@@ -14,8 +14,8 @@ const RoomTimeSlotsAdmin = () => {
     status:'available',
   });
 
-  const start_time = '2024-06-17';
-  const end_time = '2024-07-28';
+  // const start_time = '2024-06-17';
+  // const end_time = '2024-07-28';
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,9 +27,9 @@ const RoomTimeSlotsAdmin = () => {
 
       try {
         // const usersData = await fetchUsers(token);
-        const roomtimeslotsData = await getRoomTimeSlots(start_time, end_time);
-        setRoomtimeslots(roomtimeslotsData);
-        // console.log(roomtimeslotsData.data);
+        const roomtimeslotsData = await getRoomTimeSlotsAll();
+        setRoomtimeslots(roomtimeslotsData.data.rows);
+        console.log(roomtimeslotsData.data.rows);
       } catch (err) {
         setError('Failed to fetch rooms');
       }

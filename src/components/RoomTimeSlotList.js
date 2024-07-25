@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RoomTimeSlotCard from './RoomTimeSlotCard';
 import { createReservation, getRoomTimeSlots } from '../services/api';
-import { Card, Row, Col, Modal, Button, ListGroup, Navbar, Container } from 'react-bootstrap';
+import { Card, Row, Col, Modal, Button, ListGroup, Navbar, Container, Form } from 'react-bootstrap';
 import axios from 'axios';
 import { format, addDays, subDays } from 'date-fns';
 import { getDateRange } from '../utils/getDateRange';
@@ -13,7 +13,34 @@ const RoomTimeSlotList = () => {
   const [data, setData] = useState({ user_id: '', room_timeslot_id: ''});
   const [showModal, setShowModal] = useState(false);
   const [selectedRoomTimeSlot, setSelectedRoomTimeSlot] = useState(null);
-  const [startDate, setStartDate] = useState('2024-07-08');
+  const [startDate, setStartDate] = useState('2024-07-22');
+  // menampilkan filter berdasarkan room
+  const [rooms, setRooms] = useState([{
+    room_id: 7,
+    room_number: "Ruang Sidang Utama"
+  },{
+    room_id: 8,
+    room_number: "Ruang Sidang Diorama"
+  },{
+    room_id: 9,
+    room_number: "Ruang Sidang Biro AUK"
+  },{
+    room_id: 10,
+    room_number: "Auditorium HNS"
+  },{
+    room_id: 11,
+    room_number: "UNI CLUB"
+  },{
+    room_id: 12,
+    room_number: "Aula Madya Lt. 2"
+  },{
+    room_id: 13,
+    room_number: "Aula Student Center"
+  },{
+    room_id: 14,
+    room_number: "Hall Student Center"
+  }]);
+  const [selectedRoom, setSelectedRoom] = useState(7);
 
   // const limit = 10; // Jumlah item per halaman
   const daysRange = 7;
@@ -23,14 +50,14 @@ const RoomTimeSlotList = () => {
   useEffect(() => {
     const fetchData = async () => {
       const { startDate: start, endDate: end } = getDateRange(startDate, daysRange);
-      const response = await getRoomTimeSlots(start, end);
+      const response = await getRoomTimeSlots(start, end, selectedRoom);
       setRoomTimeSlots(response);
       console.log(response);
       console.log(startDate)
     };
 
     fetchData();
-  }, [startDate]);
+  }, [startDate, selectedRoom]);
 
   const handleShowModal = (roomTimeSlot) => {
     setSelectedRoomTimeSlot(roomTimeSlot);
@@ -53,6 +80,7 @@ const RoomTimeSlotList = () => {
       );
       alert('Booking successful');
       setSelectedRoomTimeSlot(null); // Close the modal
+      window.location.reload();
     } catch (error) {
       console.log(error);
       alert('Failed to reserve booking');
@@ -70,6 +98,11 @@ const RoomTimeSlotList = () => {
   const handleNext = () => {
     const newStartDate = addDays(new Date(startDate), daysRange);
     setStartDate(format(newStartDate, 'yyyy-MM-dd'));
+  };
+
+  const handleRoomChange = (e) => {
+    setSelectedRoom(e.target.value);
+    // console.log(selectedRoom)
   };
 
   // const daysOfWeek = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
@@ -129,6 +162,17 @@ const RoomTimeSlotList = () => {
           <Button onClick={handleNext} variant="outline-primary">Next</Button>
         </Container>
       </Navbar>
+
+      <Form.Group controlId="roomFilter" className="mb-3">
+        <Form.Label>Filter by Room</Form.Label>
+        <Form.Control as="select" value={selectedRoom} onChange={handleRoomChange} className='text-bg-secondary'>
+          {/* <option value="">All Rooms</option> */}
+          {rooms.map((room) => (
+            // <h1>{room}</h1>
+            <option key={room.room_id} value={room.room_id}>{room.room_number}</option>
+          ))}
+        </Form.Control>
+      </Form.Group>
 
       <Row>
       {[...Array(daysRange)].map((_, index) => (

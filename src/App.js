@@ -20,6 +20,7 @@ import ReservationsAdmin from './pages/Admin/ReservationsAdmin';
 import ProtectedRoute from './components/ProtectedRoute';
 import MyBooking from './pages/MyBooking';
 import WelcomeUser from './pages/WelcomeUser';
+import WelcomeAdmin from './pages/WelcomeAdmin';
 import RoomTimeSlots from './components/RoomTimeSlots';
 
 const App = () => (
@@ -45,7 +46,7 @@ const App = () => (
               <Admin />
             </ProtectedRoute>
           }>
-          <Route index element={<Rooms />} />
+          <Route index element={<WelcomeAdmin />} />
           <Route path="/admin/users" element={<Users />} />
           <Route path="/admin/rooms" element={<RoomsAdmin />} />
           <Route path="/admin/timeslots" element={<TimeSlots />} />

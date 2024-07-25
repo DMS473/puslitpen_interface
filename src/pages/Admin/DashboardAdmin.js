@@ -7,7 +7,7 @@ import HeaderAdmin from '../../components/HeaderAdmin';
 const DashboardAdmin = () => (
   <div>
     <HeaderAdmin />
-    <h1>Welcome to Room Reservation System</h1>
+    {/* <h1>Welcome to Room Reservation System</h1> */}
     {/* <RoomList /> */}
     <Outlet />
   </div>

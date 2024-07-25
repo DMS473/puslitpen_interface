@@ -13,11 +13,12 @@ export const register = (data) => api.post('/auth/register', data);
 export const getRooms = () => api.get('/rooms');
 export const getRoom = (id) => api.get(`/rooms/${id}`);
 export const getTimeSlots = () => api.get('/timeslots');
-export const getRoomTimeSlots = async (start_time, end_time) => {
+export const getRoomTimeSlotsAll = () => api.get('/roomtimeslots/all');
+export const getRoomTimeSlots = async (start_time, end_time, room) => {
   try {
     // console.log(start_time);
     // console.log(end_time);
-    const response = await api.get(`/roomtimeslots?start_time=${start_time}&end_time=${end_time}`);
+    const response = await api.get(`/roomtimeslots?start_time=${start_time}&end_time=${end_time}&room=${room}`);
     // console.log("respon"+response.data.rows);
     return response.data.rows;
   } catch (error) {
